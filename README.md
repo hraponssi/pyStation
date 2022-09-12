@@ -1,7 +1,7 @@
 # pyStation
 ### Info
 
-A command line python script for managing mods for World of Warships, helpful for use on platforms not supported by ModStation like Linux.
+A command line python script for managing mods for World of Warships, helpful for use on platforms not supported by ModStation such as Linux.
 
 ## Setup
 
