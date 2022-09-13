@@ -189,6 +189,33 @@ def uninstallList(): #Uninstall from list, currently installed.txt
             uninstall(item)
     print("List uninstall complete.")
 
+def downloadPatch(modname): #Download a mods patch file for manual use
+    print("Downloading patch file for " + modname + "...")
+    #Form the mod patch url
+    file = minidom.parse('modlist.xml')
+    models = file.getElementsByTagName('Item')
+
+    modurl = "NULL"
+    for elem in models:
+        if(elem.attributes['Name'].value == modname):
+            modurl = elem.getElementsByTagName("Patch")[0].firstChild.data
+    
+
+    if(modurl == "NULL"):
+        print("Failed to find mod patch url for " + modname + "!")
+        return
+
+    url = baseurl + modurl
+
+    #Download mod
+    print("Downloading .patch...")
+    try:
+        myfile = requests.get(url)
+        open(os.path.dirname(__file__)+"/" + modname + ".patch", 'wb').write(myfile.content)
+    except:
+        print("Error!")
+    print("Done downloading patch file for " + modname + "!")
+
 
 def startsWithTag(msg):
     for tag in modTags:
@@ -251,6 +278,10 @@ def cmdline(): #Recursion :)
         print("What mod would you like to uninstall:")
         name = input()
         uninstall(name)
+    elif(cmd == "downloadpatch"):
+        print("What mod patch file would you like to download:")
+        name = input()
+        downloadPatch(name)
     elif(cmd == "list" or cmd == "ls"):
         print("What type of mods to list: (all, crosshair, hudlib, shipicons, shipshell, ui, port, other)")
         type = input()
@@ -271,6 +302,7 @@ def cmdline(): #Recursion :)
         print("Help:")
         print("install")
         print("uninstall")
+        print("downloadpatch")
         print("list")
         print("listinstall")
         print("listuninstall")

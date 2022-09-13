@@ -31,6 +31,10 @@ Install a mod. After running *install* you'll be asked to enter a mod name, such
 
 Uninstall a mod. After running *uninstall* you'll be asked to enter a mod name, such as *FSI_Yamato*. Currently this works by downloading the mod files again as what files a mod adds aren't cached. This isn't very efficient.
 
+### downloadpatch
+
+Download a patch file. After running *downloadpatch* you'll be asked to enter a mod name, such as *UI_RegenAssistant*. The patch is currently intended only for manual use, changes won't automatically be made.
+
 ### list
 
 List mods. After running *list* you'll be asked for what types of mods to list, options being `all, crosshair, hudlib, shipicons, shipshell, ui, port, other`.
@@ -46,3 +50,7 @@ Uninstall all mods in the *installed.txt* file. This is done by automatically ru
 ### exit
 
 Stop pyStation.
+
+## Issues / Missing features
+
+- Some mods come with "patches" which involve editing and copying existing game files, these aren't currently implemented and have to be done manually. A warning is given when dealing with a mod with a patch file. Patch files can be downloaded with *downloadpatch* if you wish to look at them or manually install them.
