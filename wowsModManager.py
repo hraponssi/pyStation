@@ -68,6 +68,7 @@ baseurl = baseurl.replace("%version%", version)
 
 print("Welcome to pyStation.")
 
+#Uninstall a mod
 def uninstall(modname):
     print("Starting uninstall of " + modname + "...")
     #Form the mod zip url
@@ -122,6 +123,7 @@ def uninstall(modname):
     except:
         print("Error!") #Very generic
 
+#Install a mod
 def install(modname):
     print("Starting install of " + modname + "...")
     #Form the mod zip url
@@ -172,7 +174,8 @@ def install(modname):
         os.remove(os.path.dirname(__file__)+"/tempdownload.zip")
     except:
         print("Error!") #Very generic
-    
+
+#Install mods based on the installed.txt file 
 def installList(): #Install from list, currently installed.txt
     print("Starting list install...")
     with open("installed.txt", "r") as f:
@@ -181,6 +184,7 @@ def installList(): #Install from list, currently installed.txt
             install(item)
     print("List install complete.")
 
+#Uninstall mods based on the installed.txt file
 def uninstallList(): #Uninstall from list, currently installed.txt
     print("Starting list uninstall...")
     with open("installed.txt", "r") as f:
@@ -189,6 +193,7 @@ def uninstallList(): #Uninstall from list, currently installed.txt
             uninstall(item)
     print("List uninstall complete.")
 
+#Download a mods patch file
 def downloadPatch(modname): #Download a mods patch file for manual use
     print("Downloading patch file for " + modname + "...")
     #Form the mod patch url
@@ -216,13 +221,14 @@ def downloadPatch(modname): #Download a mods patch file for manual use
         print("Error!")
     print("Done downloading patch file for " + modname + "!")
 
-
+#Check if a string starts with a mod tag
 def startsWithTag(msg):
     for tag in modTags:
         if msg.startswith(modTags[tag]):
             return True
     return False
 
+#Print the mod list based on modlist.xml
 def printList(type):
     # parse an xml file by name
     file = minidom.parse('modlist.xml')
@@ -265,7 +271,7 @@ def printList(type):
                     print(name)
     print(Fore.WHITE)
 
-
+#The main command line loop.
 def cmdline(): #Recursion :)
     print("Give command:")
     cmd = input()
