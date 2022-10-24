@@ -7,7 +7,7 @@ from distutils import dir_util
 from xml.dom import minidom
 from colorama import Fore
 
-version = "1.0.0"
+version = "1.0.1"
 
 modTypes = {
     "crosshair" : "Crosshair",
@@ -36,7 +36,7 @@ resmods = ""
 dirlist = [ item for item in os.listdir(gameloc + "/bin") if os.path.isdir(os.path.join(gameloc + "/bin", item)) ]
 
 #Hardcoded backup game version
-version = "0.11.8.0"
+version = "0.11.9.0"
 
 #Check latest game version from wargaming servers, we assume EU
 try:
@@ -50,7 +50,7 @@ try:
     version = latestversion[:-(len(splitversion[4])+1)]
     print("Latest version from server is " + version)
 except:
-    print("Failed to retrieve latest game version from wargaming servers, defaulting to hardcoded version of 0.11.8.0")
+    print("Failed to retrieve latest game version from wargaming servers, defaulting to hardcoded version of " + version)
 
 #Find latest bin
 highest = "0"
